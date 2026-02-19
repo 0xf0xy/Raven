@@ -1,4 +1,4 @@
-<h1 align="center">CIPHERMIND</h1>
+<h1 align="center">RAVEN</h1>
 <p align="center"><em>command synthesis from intent</em>
 </p>
 
@@ -11,7 +11,7 @@
 
 ## > About
 
-**CipherMind** translates natural language instructions into executable Debian-Based Linux commands.
+**Raven** translates natural language instructions into executable Debian-Based Linux commands.
 
 It is designed to:
 - interpret task-oriented input
@@ -25,10 +25,7 @@ Built for experimentation and controlled environments.
 ## > Install
 
 ```bash
-git clone https://github.com/0xf0xy/CipherMind.git
-cd CipherMind
-sudo pip install .
-ciphermind -h
+This project is not yet available as a package.
 ```
 
 

@@ -1,0 +1,17 @@
+model:
+  seq_len: 64
+  vocab_size: 10000
+  d_ffn: 512
+  d_model: 256
+  num_heads: 8
+  dropout: 0.1
+  num_layers: 1
+
+training:
+  batch_size: 32
+  epochs: 15
+
+path:
+  data_path: "raven/core/training/train_data.jsonl"
+  vocab_path: ["raven/core/preprocessing/input_vocab.jsonl", "raven/core/preprocessing/target_vocab.jsonl"]
+  model_path: "raven/core/model/raven.keras"

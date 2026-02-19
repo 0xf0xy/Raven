@@ -26,12 +26,10 @@ from core.training.train import train_model
 import yaml
 
 def main():
-    with open("ciphermind/config.yaml", "r", encoding="utf-8") as file:
+    with open("raven/config.yaml", "r", encoding="utf-8") as file:
         config = yaml.safe_load(file)
         
     model, vectorizers = train_model(config)
-    #model.save(config["path"]["model_path"])
-    #vectorizers.save_vocab(config["path"]["vocab_path"])
 
     def greedy_search(model, input_text, sequence_length):
         tokenized_input = vectorizers.input_vectorizer([input_text])
