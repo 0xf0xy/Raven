@@ -24,14 +24,6 @@ Designed for controlled environments, automation research, and command-line work
 
 <br>
 
-## > Features
-
-- Probabilistic intent classification
-- Regex-based pattern resolution
-- Debian-compatible command synthesis
-
-<br>
-
 ## > Installation
 
 ```bash
