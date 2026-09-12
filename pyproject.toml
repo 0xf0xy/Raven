@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "raven"
+version = "1.0.0"
+description = "Network reconnaissance and port scanner"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "0xf0xy" }
+]
+dependencies = []
+
+[project.scripts]
+raven = "raven.cli.main:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["raven*"]
+
+[tool.setuptools.package-data]
+"raven.data" = ["common.txt", "probes.json"]

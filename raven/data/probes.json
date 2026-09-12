@@ -1,0 +1,330 @@
+{
+    "version": 1,
+    "probes": [
+        {
+            "name": "ssh",
+            "ports": [
+                22
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "SSH-"
+                ],
+                "service": "ssh",
+                "product_version": "(?i)^SSH-[0-9.]+-([A-Za-z][A-Za-z0-9.-]*)[_-]([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "ftp",
+            "ports": [
+                21
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "FTP"
+                ],
+                "service": "ftp",
+                "product_version": "(?i)(vsftpd|proftpd|pure-ftpd)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "telnet",
+            "ports": [
+                23
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "login:",
+                    "telnet"
+                ],
+                "service": "telnet",
+                "product_version": "(?i)(telnetd|telnet)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "smtp",
+            "ports": [
+                25,
+                587
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "SMTP"
+                ],
+                "service": "smtp",
+                "product_version": "(?i)(Postfix|Exim|Sendmail)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "smtps",
+            "ports": [
+                465
+            ],
+            "transport": "tcp",
+            "tls": true,
+            "payload": "EHLO raven\r\n",
+            "wait_for_banner": false,
+            "match": {
+                "contains": [
+                    "SMTP"
+                ],
+                "service": "smtps",
+                "product_version": "(?i)(Postfix|Exim|Sendmail)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "pop3",
+            "ports": [
+                110
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "+OK",
+                    "POP3"
+                ],
+                "service": "pop3",
+                "product_version": "(?i)(Dovecot|Courier)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "pop3s",
+            "ports": [
+                995
+            ],
+            "transport": "tcp",
+            "tls": true,
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "+OK",
+                    "POP3"
+                ],
+                "service": "pop3s",
+                "product_version": "(?i)(Dovecot|Courier)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "imap",
+            "ports": [
+                143
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "* OK",
+                    "IMAP"
+                ],
+                "service": "imap",
+                "product_version": "(?i)(Dovecot|Courier)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "imaps",
+            "ports": [
+                993
+            ],
+            "transport": "tcp",
+            "tls": true,
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "* OK",
+                    "IMAP"
+                ],
+                "service": "imaps",
+                "product_version": "(?i)(Dovecot|Courier)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "http",
+            "ports": [
+                80,
+                8000,
+                8080,
+                8081,
+                8888
+            ],
+            "transport": "tcp",
+            "payload": "HEAD / HTTP/1.0\r\nHost: {target}\r\nConnection: close\r\n\r\n",
+            "wait_for_banner": false,
+            "match": {
+                "contains": [
+                    "HTTP/"
+                ],
+                "service": "http",
+                "product_version": "(?im)^Server:\\s*([A-Za-z0-9_.-]+)(?:/([0-9]+(?:\\.[0-9]+)+))?"
+            }
+        },
+        {
+            "name": "https",
+            "ports": [
+                443,
+                8443
+            ],
+            "transport": "tcp",
+            "tls": true,
+            "payload": "HEAD / HTTP/1.1\r\nHost: {target}\r\nConnection: close\r\n\r\n",
+            "wait_for_banner": false,
+            "match": {
+                "contains": [
+                    "HTTP/"
+                ],
+                "service": "https",
+                "product_version": "(?im)^Server:\\s*([A-Za-z0-9_.-]+)(?:/([0-9]+(?:\\.[0-9]+)+))?"
+            }
+        },
+        {
+            "name": "redis",
+            "ports": [
+                6379
+            ],
+            "transport": "tcp",
+            "payload": "INFO SERVER\r\n",
+            "wait_for_banner": false,
+            "match": {
+                "contains": [
+                    "redis_version:"
+                ],
+                "service": "redis",
+                "product_version": "(?im)^redis_version:([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "mysql",
+            "ports": [
+                3306
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "mysql",
+                    "MariaDB"
+                ],
+                "service": "mysql",
+                "product_version": "(?i)(MySQL|MariaDB)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "postgresql",
+            "ports": [
+                5432
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "PostgreSQL",
+                    "postgres"
+                ],
+                "service": "postgresql",
+                "product_version": "(?i)(PostgreSQL)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "smb",
+            "ports": [
+                139,
+                445
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "SMB",
+                    "Samba",
+                    "Microsoft"
+                ],
+                "service": "microsoft-ds",
+                "product_version": "(?i)(Samba|Microsoft Windows)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "irc",
+            "ports": [
+                6667
+            ],
+            "transport": "tcp",
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "IRC",
+                    "NOTICE",
+                    "001"
+                ],
+                "service": "irc",
+                "product_version": "(?i)(UnrealIRCd|InspIRCd|ircd)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "ircs",
+            "ports": [
+                6697
+            ],
+            "transport": "tcp",
+            "tls": true,
+            "payload": null,
+            "wait_for_banner": true,
+            "match": {
+                "contains": [
+                    "IRC",
+                    "NOTICE",
+                    "001"
+                ],
+                "service": "ircs",
+                "product_version": "(?i)(UnrealIRCd|InspIRCd|ircd)[ /_-]?([0-9]+(?:\\.[0-9]+)+)"
+            }
+        },
+        {
+            "name": "dns",
+            "ports": [
+                53
+            ],
+            "transport": "udp",
+            "payload": null,
+            "wait_for_banner": false,
+            "match": {
+                "contains": [],
+                "service": "domain",
+                "product_version": null
+            }
+        },
+        {
+            "name": "snmp",
+            "ports": [
+                161
+            ],
+            "transport": "udp",
+            "payload": null,
+            "wait_for_banner": false,
+            "match": {
+                "contains": [],
+                "service": "snmp",
+                "product_version": null
+            }
+        }
+    ]
+}

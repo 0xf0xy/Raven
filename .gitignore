@@ -11,5 +11,5 @@ dist/
 # Editor & IDE configs
 .vscode/
 
-# Test
-test.py
+# Testing files
+test*
