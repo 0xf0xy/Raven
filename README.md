@@ -129,7 +129,7 @@ raven -h
 Provide the host that should be scanned and the scanning options:
 
 ```bash
-raven google.com -b
+raven <host> [options]
 ```
 
 For available commands and options:
