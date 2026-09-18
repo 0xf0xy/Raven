@@ -222,6 +222,10 @@ def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
 
+    if not args.command:
+        parser.print_help()
+        return
+
     if os.geteuid() != 0:
         parser.error("you must run this tool with root privileges.")
 

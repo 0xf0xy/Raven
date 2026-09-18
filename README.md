@@ -50,7 +50,9 @@ Raven was built primarily as a learning and security research project around:
 
 ## > How It Works
 
-Raven resolves the target, selects a scan method and applies it to the requested ports.
+Raven starts by resolving the target hostname to an IPv4 address. It then
+selects a probe based on the requested scan type and applies it to every target
+port using a pool of worker threads.
 
 For example:
 
@@ -58,14 +60,22 @@ For example:
 raven 192.168.1.10 -p 22,80,443 -s
 ```
 
-The CLI then:
+For a TCP scan, Raven:
 
 1. Resolves the target host.
-2. Sends the selected probe to each requested port.
-3. Collects and sorts the results.
-4. Displays open, closed or filtered states when requested.
+2. Sends a TCP probe with the selected flag to each port.
+3. Interprets the responses as open, closed, or filtered states.
+4. Collects and sorts the results by port.
+5. Displays the selected results in the terminal.
 
-This keeps protocol behavior independent from argument parsing and result formatting.
+The same workflow is adapted for the other scan modes:
+
+* UDP sends datagrams and evaluates replies or ICMP errors.
+* ICMP checks whether the target responds to an echo request.
+* Banner mode connects to open TCP ports and reads service information.
+
+When no port list is provided, Raven loads its common ports from
+`raven/data/common.txt`.
 
 <br>
 
