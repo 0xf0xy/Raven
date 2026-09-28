@@ -38,8 +38,6 @@ Raven includes the following scan types:
 
 ## > Installation
 
-Raven requires Python 3.10+ and root privileges.
-
 ```bash
 git clone https://github.com/0xf0xy/Raven.git
 cd Raven
@@ -56,7 +54,7 @@ Maybe you need to install as root.
 
 <br>
 
-## Usage
+## > Usage
 
 Basic scan:
 
